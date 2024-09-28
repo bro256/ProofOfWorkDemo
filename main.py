@@ -1,9 +1,12 @@
 import hashlib
+import time
 
 
 nonce = 0
 max_leading_zeros_binary = 0
 counter = 0
+start_time = time.time()
+
 
 def bytes_to_hex(bytes_seq):
     hex_string = ""
@@ -35,8 +38,11 @@ def count_leading_zeros_hex(hex_string):
             break
     return count
 
+def get_elapsed_time(start_time):
+    return int((time.time() - start_time)* 1000)
 
-while counter <= 100000:
+
+while counter <= 1000000:
     data = "Demo" + str(nonce)
     hashbytes = hashlib.sha256(data.encode()).digest()
     binary_hash = bytes_to_binary(hashbytes)
@@ -57,6 +63,8 @@ while counter <= 100000:
         print("Leading Zeros in Hex:", leading_zeros_hex)
 
         print("Iterations:", counter)
+
+        print('Elapsed Time:', get_elapsed_time(start_time), 'ms')
         print("------------------------------------------")
 
         max_leading_zeros_binary = leading_zeros_binary
