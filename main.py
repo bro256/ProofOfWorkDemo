@@ -26,6 +26,15 @@ def count_leading_zeros_binary(binary_string):
             break
     return count
 
+def count_leading_zeros_hex(hex_string):
+    count = 0
+    for char in hex_string:
+        if char == '0':
+            count +=1
+        else:
+            break
+    return count
+
 
 
 data = "Demo" + str(nonce)
@@ -43,3 +52,5 @@ print("Binary Hash:", binary_hash)
 leading_zeros_binary = count_leading_zeros_binary(binary_hash)
 print("Leading Zeros in Binary:", leading_zeros_binary)
 
+leading_zeros_hex = count_leading_zeros_hex(hex_hash)
+print("Leading Zeros in Hex:", leading_zeros_hex)
