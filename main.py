@@ -21,7 +21,7 @@ def bytes_to_binary(bytes_seq):
 data = "Demo" + str(nonce)
 hashbytes = hashlib.sha256(data.encode()).digest()
 
-print(hashbytes)
-print(bytes_to_hex(hashbytes))
-print(bytes_to_binary(hashbytes))
+print("Hash bytes:", hashbytes)
+print("Hexadecimal Hash:", bytes_to_hex(hashbytes))
+print("Binary Hash:", bytes_to_binary(hashbytes))
 
