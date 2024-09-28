@@ -2,7 +2,7 @@ import hashlib
 
 
 nonce = 0
-num_zeros = 0
+max_leading_zeros_binary = 0
 counter = 0
 
 def bytes_to_hex(bytes_seq):
@@ -36,21 +36,31 @@ def count_leading_zeros_hex(hex_string):
     return count
 
 
+while counter <= 100000:
+    data = "Demo" + str(nonce)
+    hashbytes = hashlib.sha256(data.encode()).digest()
+    binary_hash = bytes_to_binary(hashbytes)
+    leading_zeros_binary = count_leading_zeros_binary(binary_hash)
 
-data = "Demo" + str(nonce)
-hashbytes = hashlib.sha256(data.encode()).digest()
+    if leading_zeros_binary > max_leading_zeros_binary:
+        print("Hash bytes:", hashbytes)
+
+        hex_hash = bytes_to_hex(hashbytes)
+        print("Hexadecimal Hash:", hex_hash)
+
+        print("Binary Hash:", binary_hash)
 
 
-print("Hash bytes:", hashbytes)
+        print("Leading Zeros in Binary:", leading_zeros_binary)
 
-hex_hash = bytes_to_hex(hashbytes)
-print("Hexadecimal Hash:", hex_hash)
+        leading_zeros_hex = count_leading_zeros_hex(hex_hash)
+        print("Leading Zeros in Hex:", leading_zeros_hex)
 
-binary_hash = bytes_to_binary(hashbytes)
-print("Binary Hash:", binary_hash)
+        print("Iterations:", counter)
+        print("------------------------------------------")
 
-leading_zeros_binary = count_leading_zeros_binary(binary_hash)
-print("Leading Zeros in Binary:", leading_zeros_binary)
+        max_leading_zeros_binary = leading_zeros_binary
+    
+    nonce += 1
+    counter += 1
 
-leading_zeros_hex = count_leading_zeros_hex(hex_hash)
-print("Leading Zeros in Hex:", leading_zeros_hex)
