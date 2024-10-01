@@ -25,7 +25,7 @@ def count_leading_zeros_binary(binary_string):
     return count
 
 def get_elapsed_time(start_time):
-    return int((time.time() - start_time) * 1000)
+    return time.time() - start_time
 
 while counter <= iterations:
     data = input_data + str(nonce)
@@ -41,7 +41,9 @@ while counter <= iterations:
         print("Binary Hash:", binary_hash)
         print("Leading Zeros in Binary:", leading_zeros_binary)
         print("Iterations:", counter)
-        print('Elapsed Time:', get_elapsed_time(start_time), 'ms')
+
+        elapsed_time = get_elapsed_time(start_time)
+        print(f'Elapsed Time: {elapsed_time:.3f} seconds')
         print("")
         
         max_binary_leading_zeros = leading_zeros_binary
